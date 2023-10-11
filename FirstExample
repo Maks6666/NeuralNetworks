@@ -1,0 +1,76 @@
+
+# based on ex. 2
+import numpy as np
+
+# input layer
+firts_value = 1.0
+
+second_value = 0.0
+
+third_value = 1.0
+
+
+def activation_function(x):
+    if x >= 0.5:
+        return 1
+    elif x < 0.5:
+        return 0
+
+
+def predict(firts_value, second_value, third_value):
+    inputs = np.array([firts_value, second_value, third_value])
+
+
+    # веса, которые принимают скрытые нейроны:
+    weights_input_to_hidden1 = [0.25, 0.25, 0]
+    # вспомни - первый нейрон скрытого слоя принимал именно такие значения
+    # а значения мы задали сами и так же со вторым:
+
+    weights_input_to_hidden2 = [0.5, -0.4, 0.9]
+    
+    # веса, проходящие от hidden layer до output 
+    weights_input_to_hidden = np.array((weights_input_to_hidden1, weights_input_to_hidden2))
+
+
+# Строка weights_input_to_hidden = np.array((weights_input_to_hidden1, weights_input_to_hidden2)) 
+# создает двумерный массив (матрицу) weights_input_to_hidden, который представляет собой веса, 
+# связывающие нейроны в скрытом слое с нейронами в выходном слое вашей нейронной сети.
+
+# В данном случае:
+
+# weights_input_to_hidden1 представляет веса, связанные с первым нейроном в скрытом слое.
+# weights_input_to_ыhidden2 представляет веса, связанные с вторым нейроном в скрытом слое.
+# Оба эти нейрона принимают входные данные из массива inputs, который вы определили ранее.
+
+# Создание массива weights_input_to_hidden с помощью 
+# np.array((weights_input_to_hidden1, weights_input_to_hidden2)) 
+# объединяет веса для обоих нейронов в одну матрицу, 
+# где строки матрицы представляют нейроны в скрытом слое, 
+# а столбцы представляют веса, связанные с каждым из нейронов. 
+# Это позволяет эффективно управлять и вычислять взвешенные суммы для каждого нейрона в скрытом слое 
+# при передаче входных данных через веса.
+
+    # веса от скрытого слоя до output
+    weights_hidden_to_output = np.array([-1, 1])
+
+    # фактическая реализация формулы 
+    # x1 * w1 + x2 * w2 + x3 * w3
+    # исходя из этого inputs - это массив содержащий 
+    # сумму входных данных, а  weights_input_to_hidden 
+    # - массив содержащий сумму весов 
+    hidden_input = np.dot(weights_input_to_hidden, inputs)
+
+    print("hidden_input: " + str(hidden_input))
+# predict(firts_value, second_value, third_value)
+
+
+
+    hidden_output = np.array([activation_function(x) for x in hidden_input])
+    print("hidden_output: " + str(hidden_output))
+
+
+    output = np.dot(weights_hidden_to_output, hidden_output)
+    print("output: " + str(output))
+    return activation_function(output) == 1
+
+print("result is: " + str (predict(firts_value, second_value, third_value)))
