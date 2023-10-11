@@ -1,3 +1,6 @@
+IMPORTANT: There is no learning proses in this network.
+Learning proses of neural network means selection of weight values ​​by a neural network (sometimes by 'random'). 
+But in this case we give values of weights by ourselves. 
 
 # based on ex. 2
 import numpy as np
