@@ -24,43 +24,42 @@ def predict(firts_value, second_value, third_value):
     inputs = np.array([firts_value, second_value, third_value])
 
 
-    # веса, которые принимают скрытые нейроны:
+    # weights that hidden neurons take:
     weights_input_to_hidden1 = [0.25, 0.25, 0]
-    # вспомни - первый нейрон скрытого слоя принимал именно такие значения
-    # а значения мы задали сами и так же со вторым:
+    # remember - the first neuron of the hidden layer took exactly these values
+    # and we set the values ​​ourselves and the same with the second one:
 
     weights_input_to_hidden2 = [0.5, -0.4, 0.9]
     
-    # веса, проходящие от hidden layer до output 
+    # weights from hidden layer tо output 
     weights_input_to_hidden = np.array((weights_input_to_hidden1, weights_input_to_hidden2))
 
+# Line weights_input_to_hidden = np.array((weights_input_to_hidden1, weights_input_to_hidden2))
+# creates a two-dimensional array (matrix) weights_input_to_hidden, which represents the weights
+# connecting neurons in the hidden layer to neurons in the output layer of your neural network.
 
-# Строка weights_input_to_hidden = np.array((weights_input_to_hidden1, weights_input_to_hidden2)) 
-# создает двумерный массив (матрицу) weights_input_to_hidden, который представляет собой веса, 
-# связывающие нейроны в скрытом слое с нейронами в выходном слое вашей нейронной сети.
+# In our case:
 
-# В данном случае:
+# weights_input_to_hidden1 represents the weights associated with the first neuron in the hidden layer.
+# weights_input_to_hidden2 represents the weights associated with the second neuron in the hidden layer.
+# Both of these neurons take input from the inputs array you defined earlier.
 
-# weights_input_to_hidden1 представляет веса, связанные с первым нейроном в скрытом слое.
-# weights_input_to_ыhidden2 представляет веса, связанные с вторым нейроном в скрытом слое.
-# Оба эти нейрона принимают входные данные из массива inputs, который вы определили ранее.
+# Create the weights_input_to_hidden array using
+# np.array((weights_input_to_hidden1, weights_input_to_hidden2))
+# combines the weights for both neurons into one matrix,
+# where the rows of the matrix represent the neurons in the hidden layer,
+# and the columns represent the weights associated with each of the neurons.
+# This allows you to efficiently manage and calculate weighted sums for each neuron in the hidden layer
+# when passing input data through weights.
 
-# Создание массива weights_input_to_hidden с помощью 
-# np.array((weights_input_to_hidden1, weights_input_to_hidden2)) 
-# объединяет веса для обоих нейронов в одну матрицу, 
-# где строки матрицы представляют нейроны в скрытом слое, 
-# а столбцы представляют веса, связанные с каждым из нейронов. 
-# Это позволяет эффективно управлять и вычислять взвешенные суммы для каждого нейрона в скрытом слое 
-# при передаче входных данных через веса.
-
-    # веса от скрытого слоя до output
+    # weights from hidden layer to output
     weights_hidden_to_output = np.array([-1, 1])
 
-    # фактическая реализация формулы 
+    # actual implementation of the formula
     # x1 * w1 + x2 * w2 + x3 * w3
-    # исходя из этого inputs - это массив содержащий 
-    # сумму входных данных, а  weights_input_to_hidden 
-    # - массив содержащий сумму весов 
+    # based on this inputs is an array containing
+    # the sum of the input data, and weights_input_to_hidden
+    # - array containing the sum of weights
     hidden_input = np.dot(weights_input_to_hidden, inputs)
 
     print("hidden_input: " + str(hidden_input))
