@@ -1,6 +1,6 @@
 
 # We didn’t train the previous neural network, but we will train this 
-# this will be a perceptron
+# its going to be a perceptron
 # the perceptron learns the dependencies between training_inputs and training_outputs
 
 import numpy as np 
@@ -90,22 +90,26 @@ for i in range(9000):
     # and err (error vector). This is an important expression
     # since it is used to calculate the weight correction which
     # based on error.
+
+
     adjustments = np.dot(input_layer.T, err * (output_layer * (1-output_layer)) )
 
     # synaptic_weights += adjustments.T: This line updates the weights
     # networks by adding adjustments to the current weights.
     # This is a step that leads to improvements in network parameters at each training iteration.
+
+
     synaptic_weights += adjustments.T
 
-print("Веса после обучения")
+print("Weights after learning")
 print(synaptic_weights)
-print("Результат (после обучения):")
+print("Result (after learing):")
 print(output_layer)
 
 
 
 
-# тест
+# test
 new_inputs = np.array([1, 1, 0])
 output_layer = sigmoid(np.dot (new_inputs, synaptic_weights.T))
 
